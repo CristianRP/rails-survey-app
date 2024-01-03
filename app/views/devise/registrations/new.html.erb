@@ -15,12 +15,12 @@
 
          <div class="field flex flex-col">
           <%= f.label :email, class: "text-white text-lg text-center p-2" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text-white text-lg text-center p-2" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded-lg text-sm font-semibold" %>
         </div>
 
          <div class="field flex flex-col py-2">
           <%= f.label :password, class: "text-white text-lg text-center p-2" %>
-          <%= f.password_field :password, autocomplete: "new-password", class: "text-white text-lg text-center p-2" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "rounded-lg text-sm font-semibold" %>
           <% if @minimum_password_length %>
             <em class="text-sm text-white text-center font-semibold">(<%= @minimum_password_length %> characters minimum)</em>
           <% end %>
@@ -28,7 +28,7 @@
 
          <div class="field flex flex-col">
           <%= f.label :password_confirmation, class: "text-white text-lg text-center p-2" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "rounded-lg text-sm font-semibold" %>
         </div>
 
         <div class="actions py-5 flex justify-center">
