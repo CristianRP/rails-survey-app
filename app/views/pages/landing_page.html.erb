@@ -1,4 +1,31 @@
-<div>
-  <h1 class="font-bold text-4xl">Pages#landing_page</h1>
-  <p>Find me in app/views/pages/landing_page.html.erb</p>
-</div>
+<main>
+  <section class="h-96 flex justify-around items-center gap-10 bg-main-color">
+    <div class="text-white text-center">
+      <p class="font-semibold text-3xl py-5">
+        Surver Rails App
+      </p>
+      <p>
+        Create your first survey.
+      </p>
+      <p>
+        Start sending suverys to different companies around the world.
+      </p>
+      <div class="py-5 text-black">
+        <%= button_to root_path, id: 'get_started' do %>
+          <div class="bg-signIn p-4 rounded-lg">
+            <i class="fa-solid fa-circle-arrow-right"></i>
+            <span class="ml-1">
+              Get Started.
+            </span>
+          </div>
+        <% end %>
+      </div>
+      <p class="text-sm font-semibold">
+        surver-rails-app.com
+      </p>
+    </div>
+    <div>
+      <%= image_tag 'ruby', width: 300 %>
+    </div>
+  </section>
+</main>
