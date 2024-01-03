@@ -4,6 +4,9 @@ services:
     image: postgres:latest
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USERNAME=postgres
+      - POSTGRES_PASSWORD=password
 
   redis:
     image: redis:latest
@@ -14,7 +17,7 @@ services:
     build: .
     tty: true
     # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    command: bash -c "rm -f tmp/pids/server.pid && ./bin/dev"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rake assets:precompile && ./bin/dev"
     volumes:
       - .:/course-rails
     ports:
