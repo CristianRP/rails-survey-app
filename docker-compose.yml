@@ -13,6 +13,11 @@ services:
     ports:
       - '6379:6379'
 
+  mailserver:
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+
   web:
     build: .
     tty: true
@@ -25,6 +30,7 @@ services:
     depends_on:
       - db
       - redis
+      - mailserver
     environment:
       - REDIS_URL=redis://redis:6379/
       - POSTGRES_USERNAME=postgres
