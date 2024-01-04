@@ -24,7 +24,12 @@
         <p><%= notice %></p>
       </div>
     <% end %>
-    <%= yield %>
+    <main class="flex justify-between">
+      <%= yield %>
+      <nav class="bg-footerGray p-2">
+        <%= render 'shared/right_navbar' %>
+      </nav>
+    </main>
     <%= render 'shared/footer' %>
   </body>
 </html>
