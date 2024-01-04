@@ -2,7 +2,7 @@ FROM ruby:3.3.0
 
 WORKDIR /course-rails
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client imagemagick libvips
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client imagemagick libvips vim
 
 COPY Gemfile /course-rails/Gemfile
 COPY Gemfile.lock /course-rails/Gemfile.lock

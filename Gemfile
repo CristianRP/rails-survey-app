@@ -30,6 +30,8 @@ gem 'tailwindcss-rails', '~> 2.1'
 
 gem 'devise'
 
+gem 'postmark-rails'
+
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '>= 4.0.1'
 
