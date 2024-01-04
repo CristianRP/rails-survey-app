@@ -1,14 +1,13 @@
 class EvaluationsController < ApplicationController
-  before_action :set_evaluation, only: %i[ show edit update destroy ]
+  before_action :set_evaluation, only: %i(show edit update destroy)
 
   # GET /evaluations or /evaluations.json
   def index
-    @evaluations = Section.all
+    @evaluations = Evaluation.all
   end
 
   # GET /evaluations/1 or /evaluations/1.json
-  def show
-  end
+  def show; end
 
   # GET /evaluations/new
   def new
@@ -16,20 +15,21 @@ class EvaluationsController < ApplicationController
   end
 
   # GET /evaluations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /evaluations or /evaluations.json
   def create
-    @evaluation = Evaluation.new(evaluation_params)
+    @evaluation = current_user.evaluations.build(evaluation_params)
 
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to evaluation_url(@evaluation), notice: "Evaluation was successfully created." }
-        format.json { render :show, status: :created, location: @evaluation }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('evaluations_all',
+                                                    partial: 'evaluations/evaluations',
+                                                    locals: { evaluations: Evaluation.all })
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @evaluation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -38,11 +38,11 @@ class EvaluationsController < ApplicationController
   def update
     respond_to do |format|
       if @evaluation.update(evaluation_params)
-        format.html { redirect_to evaluation_url(@evaluation), notice: "Evaluation was successfully updated." }
-        format.json { render :show, status: :ok, location: @evaluation }
+        format.html do
+          redirect_to evaluation_url(@evaluation), notice: 'Evaluation was successfully updated.'
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @evaluation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -52,19 +52,17 @@ class EvaluationsController < ApplicationController
     @evaluation.destroy!
 
     respond_to do |format|
-      format.html { redirect_to evaluations_url, notice: "Evaluation was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to evaluations_url, notice: 'Evaluation was successfully destroyed.' }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_evaluation
-      @evaluation = Evaluation.find(params[:id])
-    end
+private
 
-    # Only allow a list of trusted parameters through.
-    def evaluation_params
-      params.require(:evaluation).permit(:name, :description, :type, :body, :user_id)
-    end
+  def set_evaluation
+    @evaluation = Evaluation.find(params[:id])
+  end
+
+  def evaluation_params
+    params.require(:evaluation).permit(:name, :description)
+  end
 end
