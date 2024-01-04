@@ -25,7 +25,9 @@
       </div>
     <% end %>
     <main class="flex justify-between">
-      <%= yield %>
+      <div class="w-full">
+        <%= yield %>
+      </div>
       <nav class="bg-footerGray p-2">
         <%= render 'shared/right_navbar' %>
       </nav>
