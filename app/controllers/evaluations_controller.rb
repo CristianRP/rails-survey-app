@@ -26,7 +26,8 @@ class EvaluationsController < ApplicationController
         format.turbo_stream do
           render turbo_stream: turbo_stream.replace('evaluations_all',
                                                     partial: 'evaluations/evaluations',
-                                                    locals: { evaluations: Evaluation.all })
+                                                    locals: { evaluations: Evaluation.all,
+                                                              notice: 'Evaluation was successfully created.' })
         end
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,8 +39,11 @@ class EvaluationsController < ApplicationController
   def update
     respond_to do |format|
       if @evaluation.update(evaluation_params)
-        format.html do
-          redirect_to evaluation_url(@evaluation), notice: 'Evaluation was successfully updated.'
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace("evaluation_#{@evaluation.id}",
+                                                    template: 'evaluations/show',
+                                                    locals: { evaluation: @evaluation,
+                                                              notice: 'Evaluation was successfully updated.'})
         end
       else
         format.html { render :edit, status: :unprocessable_entity }

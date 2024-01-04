@@ -22,7 +22,7 @@
   </div>
 
   <div class="flex py-2 justify-end gap-5">
-    <%= form.submit 'Create', class: "rounded-lg py-3 px-5 bg-evaluationStrong text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit action_name == 'new' ? 'Create' : 'Update', class: "rounded-lg py-3 px-5 bg-evaluationStrong text-white inline-block font-medium cursor-pointer" %>
     <%= link_to 'Cancel', :back, data: { turbo_frame: "_top" }, class: "rounded-lg py-3 px-5 bg-removeIcon text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
