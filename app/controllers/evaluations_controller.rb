@@ -25,8 +25,12 @@ class EvaluationsController < ApplicationController
       if @evaluation.save
         format.turbo_stream do
           render turbo_stream: turbo_stream.replace('evaluations_all',
-                                                    partial: 'evaluations/evaluations',
-                                                    locals: { evaluations: Evaluation.all,
+                                                    partial: 'shared/sections/list',
+                                                    locals: { list: Evaluation.all,
+                                                              color: 'evaluationStrong',
+                                                              html_text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem sit dolorum, <br>
+                                                                delectus praesentium voluptas quis assumenda? Recusandae ex illo nulla natus <br>
+                                                                accusantium dolorum aut? Aspernatur sapiente soluta unde ea aperiam?',
                                                               notice: 'Evaluation was successfully created.' })
         end
       else
