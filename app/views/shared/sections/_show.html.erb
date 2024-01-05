@@ -1,0 +1,40 @@
+<%# locals: (model: Section, image: {name: 'upload', width: '40', class: 'object-fit w-full p-2'}, show_body: false, color: 'main-color', notice: nil) %>
+<%= turbo_frame_tag 'modal' %>
+<% if notice.present? %>
+  <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block w-full" id="notice"><%= notice %></p>
+<% end %>
+<div id="<%= dom_id model %>" class="border-2 w-9/12 mx-auto flex h-48 shadow-lg rounded-lg my-20">
+  <div class="w-48 flex items-center">
+    <%= image_tag image[:name], width: image[:width], class: image[:class] %>
+  </div>
+  <div class="w-full p-5">
+    <p class="text-3xl font-bold text-<%= color %>">
+      <%= model.name %>
+      <i class="fa-solid fa-square-poll-horizontal ml-5"></i>
+    </p>
+
+    <% if show_body %>
+      <p class="my-2 text-sm font-semibold text-<%= color %>">
+        <%= model.body %>
+      </p>
+    <% else %>
+      <p class="my-2 text-sm font-semibold text-<%= color %>">
+        <%= model.description %>
+      </p>
+    <% end %>
+
+    <p class="text-sm font-semibold text-<%= color %>">
+      <%= model.user.email %>
+    </p>
+
+  </div>
+
+  <div class="flex flex-col justify-between p-2">
+    <%= link_to send("edit_#{model.class.name.underscore}_path", model), id: "edit_#{model}", data: { turbo_frame: 'modal' } do %>
+      <i class="fa-solid fa-pen text-editIcon"></i>
+    <% end %>
+    <%= button_to send("#{model.class.name.underscore}_path", model), id: "remove_#{model}", method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } do %>
+      <i class="fa-solid fa-trash text-removeIcon"></i>
+    <% end %>
+  </div>
+</div>

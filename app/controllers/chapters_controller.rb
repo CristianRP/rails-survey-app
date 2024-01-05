@@ -48,8 +48,14 @@ class ChaptersController < ApplicationController
   def update
     respond_to do |format|
       if @chapter.update(chapter_params)
-        format.html do
-          redirect_to chapter_url(@chapter), notice: 'Chapter was successfully updated.'
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace("chapter_#{@chapter.id}",
+                                                    partial: 'shared/sections/show',
+                                                    locals: {
+                                                      model: @chapter,
+                                                      show_body: true,
+                                                      color: 'chapterStrong'
+                                                    })
         end
         format.json { render :show, status: :ok, location: @chapter }
       else
