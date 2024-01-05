@@ -45,8 +45,9 @@ class EvaluationsController < ApplicationController
       if @evaluation.update(evaluation_params)
         format.turbo_stream do
           render turbo_stream: turbo_stream.replace("evaluation_#{@evaluation.id}",
-                                                    template: 'evaluations/show',
-                                                    locals: { evaluation: @evaluation,
+                                                    partial: 'shared/sections/show',
+                                                    locals: { model: @evaluation,
+                                                              color: 'evaluationStrong',
                                                               notice: 'Evaluation was successfully updated.'})
         end
       else
