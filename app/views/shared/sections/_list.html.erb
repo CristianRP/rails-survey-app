@@ -6,12 +6,12 @@
 <% end %>
 <section id="<%= klass_name.downcase.pluralize %>_all">
   <div class="flex flex-col items-center w-full py-10">
-    <h2 class="text-center text-3xl font-bold py-5 text-<%= color %>"><%= klass_name.titleize %></h2>
+    <h2 class="text-center text-3xl font-bold py-5 text-<%= color %>"><%= klass_name.pluralize.titleize %></h2>
     <p class="text-sm font-semibold text-center text-<%= color %>">
       <%= sanitize html_text %>
     </p>
     <div class="flex justify-center py-5">
-      <%= button_to send("new_#{klass_name.underscore}_path"), data: { turbo_frame: 'modal' } do %>
+      <%= link_to send("new_#{klass_name.singularize.underscore}_path"), id: "create_#{klass_name.singularize.underscore}_welcome", data: { turbo_frame: 'modal' } do %>
         <div class="text-sm text-white font-semibold rounded-lg bg-<%= color %> p-3">
           Create <%= klass_name.titleize %>
         </div>
@@ -20,7 +20,7 @@
 
     <div class="w-full">
       <% list.each do |item| %>
-        <%= render "shared/sections/item_list_card", model: item, color: "chapterStrong" %>
+        <%= render "shared/sections/item_list_card", model: item, color: color %>
       <% end %>
     </div>
   </div>

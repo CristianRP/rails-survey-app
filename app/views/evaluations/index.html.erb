@@ -1,5 +1,11 @@
 <% if @evaluations.any? %>
-  <%= render "evaluations", evaluations: @evaluations %>
+  <%= render "shared/sections/list", {
+    list: @evaluations,
+    color: "evaluationStrong",
+    html_text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem sit dolorum, <br>
+      delectus praesentium voluptas quis assumenda? Recusandae ex illo nulla natus <br>
+      accusantium dolorum aut? Aspernatur sapiente soluta unde ea aperiam?"
+  }%>
 <% else %>
   <%= render "/shared/sections/welcome", {
     kind: 'evaluation',
