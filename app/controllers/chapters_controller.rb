@@ -19,12 +19,22 @@ class ChaptersController < ApplicationController
 
   # POST /chapters or /chapters.json
   def create
-    @chapter = Chapter.new(chapter_params)
+    @chapter = current_user.chapters.build(chapter_params)
 
     respond_to do |format|
       if @chapter.save
-        format.html do
-          redirect_to chapter_url(@chapter), notice: 'Chapter was successfully created.'
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('chapters_all',
+                                                    partial: 'shared/sections/list',
+                                                    locals: {
+                                                      list: Chapter.all,
+                                                      color: 'chapterStrong',
+                                                      html_text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.<br>
+                                                        Nobis labore voluptates cum provident vel odio quo aliquid,<br>
+                                                        autem dolorem asperiores placeat! Officia adipisci a voluptatibus<br>
+                                                        ratione accusantium. Asperiores, a exercitationem.',
+                                                      notice: 'Chapter was successfully created.'
+                                                    })
         end
         format.json { render :show, status: :created, location: @chapter }
       else

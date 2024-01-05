@@ -1,0 +1,32 @@
+<%# locals: (model: Section, show_body: false, color: 'main-color') %>
+<%= form_with( model: model, class: "contents", data: { controller: "modal", action: "submit->modal#close" } ) do |form| %>
+  <%# model.errors.add(:base, StandardError.new('pato')) %>
+  <% if model.errors.any? %>
+    <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <%= render "devise/shared/error_messages", resource: model %>
+    </div>
+  <% end %>
+
+  <div class="my-5 flex flex-col py-5">
+    <%= form.label :name, class: "text-white font-semibold"%>
+    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full font-semibold pt-2"%>
+  </div>
+
+  <% if show_body %>
+    <div class="my-5 flex flex-col py-5">
+      <%= form.label :body, class: "text-white font-semibold"%>
+      <%= form.text_field :body, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full font-semibold pt-2"%>
+    </div>
+  <% else %>
+    <div class="my-5 flex flex-col py-5">
+      <%= form.label :description, class: "text-white font-semibold"%>
+      <%= form.text_field :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full font-semibold pt-2"%>
+    </div>
+  <% end %>
+
+  <div class="flex justify-end py-2 gap-5">
+    <%= form.submit action_name == 'new' ? 'Create' : 'Update', class: "rounded-lg py-3 px-5 bg-#{color} text-white inline-block font-medium cursor-pointer" %>
+    <%= link_to "Cancel", :back, data: { turbo_frame: "_top" }, class: "rounded-lg py-3 px-5 bg-removeIcon text-white inline-block font-medium cursor-pointer" %>
+  </div>
+
+<% end %>

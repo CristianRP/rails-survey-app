@@ -1,4 +1,4 @@
-<%# locals: (list: Section, color: 'main-color', html_text: 'Sections<br>Surver Rails App') %>
+<%# locals: (list: Section, color: 'main-color', html_text: 'Sections<br>Surver Rails App', notice: nil) %>
 <% klass_name = list.klass.name %>
 <%= turbo_frame_tag 'modal' %>
 <% if notice.present? %>
