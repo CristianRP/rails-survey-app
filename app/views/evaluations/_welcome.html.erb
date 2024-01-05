@@ -1,23 +1,10 @@
-<%= turbo_frame_tag 'modal' %>
-<section class="flex justify-around items-center p-32" id="evaluations_all">
-  <div>
-    <%= image_tag '6099984', width: 400 %>
-  </div>
-
-  <div>
-    <h1 class="text-center text-3xl font-bold text-evaluationStrong">Evaluations</h1>
-    <p class="text-center py-2 font-semibold text-evaluationStrong">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque velit<br>
+<%= render "/shared/sections/welcome", {
+  kind: 'evaluation',
+  image: { name: '6099984', width: 400 },
+  color: 'evaluationStrong',
+  html_text: '      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque velit<br>
       consequuntur? Rerum neque saepe minus, alias nihil <br>
-      officiis commodi voluptates in, eos id tempore omnis aut.
-    </p>
+      officiis commodi voluptates in, eos id tempore omnis aut.',
+  url: new_evaluation_path
+} %>
 
-    <div class="flex justify-center my-4">
-      <%= link_to new_evaluation_path, id: 'create_evaluation_welcome', data: { turbo_frame: 'modal' } do %>
-        <div class="p-3 bg-evaluationStrong text-white text-sm font-semibold rounded-lg">
-          Create Evaluation
-        </div>
-      <% end %>
-    </div>
-  </div>
-</section>

@@ -1,0 +1,23 @@
+<%# locals: (kind: 'Section', container_css: '', image: {name: 'ruby', width: 400}, color: 'main-color', html_text: 'Default Text<br>Suver Rails App', url: root_url)%>
+<%= turbo_frame_tag 'modal' %>
+<section class="flex justify-around items-center p-32 <%= container_css %>" id="<%= kind.pluralize %>_all">
+  <div>
+  <%= puts url %>
+    <%= image_tag image[:name], width: image[:width] %>
+  </div>
+
+  <div>
+    <h1 class="text-center text-3xl font-bold text-<%= color %>"><%= kind.pluralize.titleize %></h1>
+    <p class="text-center py-2 font-semibold text-<%= color %>">
+      <%= sanitize html_text %>
+    </p>
+
+    <div class="flex justify-center my-4">
+      <%= link_to url, id: "create_#{kind}_welcome", data: { turbo_frame: 'modal' } do %>
+        <div class="p-3 bg-<%= color %> text-white text-sm font-semibold rounded-lg">
+          Create <%= kind.titleize %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
