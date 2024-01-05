@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable
 
-  has_many :evaluations, -> { where(kind: :evaluation) }
+  has_many :evaluations
 end
