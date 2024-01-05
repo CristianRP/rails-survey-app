@@ -1,5 +1,5 @@
 class ChaptersController < ApplicationController
-  before_action :set_chapter, only: %i[ show edit update destroy ]
+  before_action :set_chapter, only: %i(show edit update destroy)
 
   # GET /chapters or /chapters.json
   def index
@@ -7,8 +7,7 @@ class ChaptersController < ApplicationController
   end
 
   # GET /chapters/1 or /chapters/1.json
-  def show
-  end
+  def show; end
 
   # GET /chapters/new
   def new
@@ -16,8 +15,7 @@ class ChaptersController < ApplicationController
   end
 
   # GET /chapters/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /chapters or /chapters.json
   def create
@@ -25,7 +23,9 @@ class ChaptersController < ApplicationController
 
     respond_to do |format|
       if @chapter.save
-        format.html { redirect_to chapter_url(@chapter), notice: "Chapter was successfully created." }
+        format.html do
+          redirect_to chapter_url(@chapter), notice: 'Chapter was successfully created.'
+        end
         format.json { render :show, status: :created, location: @chapter }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,9 @@ class ChaptersController < ApplicationController
   def update
     respond_to do |format|
       if @chapter.update(chapter_params)
-        format.html { redirect_to chapter_url(@chapter), notice: "Chapter was successfully updated." }
+        format.html do
+          redirect_to chapter_url(@chapter), notice: 'Chapter was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @chapter }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +54,18 @@ class ChaptersController < ApplicationController
     @chapter.destroy!
 
     respond_to do |format|
-      format.html { redirect_to chapters_url, notice: "Chapter was successfully destroyed." }
+      format.html { redirect_to chapters_url, notice: 'Chapter was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_chapter
-      @chapter = Chapter.find(params[:id])
-    end
+private
 
-    # Only allow a list of trusted parameters through.
-    def chapter_params
-      params.require(:chapter).permit(:name, :description, :type, :body, :user_id)
-    end
+  def set_chapter
+    @chapter = Chapter.find(params[:id])
+  end
+
+  def chapter_params
+    params.require(:chapter).permit(:name, :body)
+  end
 end

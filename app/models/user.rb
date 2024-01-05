@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :confirmable, :trackable
 
   has_many :evaluations
+  has_many :chapters
 end

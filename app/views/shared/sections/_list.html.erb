@@ -1,0 +1,27 @@
+<%# locals: (list: Section, color: 'main-color', html_text: 'Sections<br>Surver Rails App') %>
+<% klass_name = list.klass.name %>
+<%= turbo_frame_tag 'modal' %>
+<% if notice.present? %>
+  <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block w-full" id="notice"><%= notice %></p>
+<% end %>
+<section id="<%= klass_name.downcase.pluralize %>_all">
+  <div class="flex flex-col items-center w-full py-10">
+    <h2 class="text-center text-3xl font-bold py-5 text-<%= color %>"><%= klass_name.titleize %></h2>
+    <p class="text-sm font-semibold text-center text-<%= color %>">
+      <%= sanitize html_text %>
+    </p>
+    <div class="flex justify-center py-5">
+      <%= button_to send("new_#{klass_name.underscore}_path"), data: { turbo_frame: 'modal' } do %>
+        <div class="text-sm text-white font-semibold rounded-lg bg-<%= color %> p-3">
+          Create <%= klass_name.titleize %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="w-full">
+      <% list.each do |item| %>
+        <%= render "shared/sections/item_list_card", model: item, color: "chapterStrong" %>
+      <% end %>
+    </div>
+  </div>
+</section>
