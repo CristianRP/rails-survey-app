@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :chapters
-  resources :evaluations
+  resources :evaluations do
+    resources :questions, only: :create
+  end
   devise_for :users
 
   authenticated(:user) do
