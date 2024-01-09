@@ -1,0 +1,15 @@
+<div class="border-2 w-3/12 m-5 flex flex-col items-center rounded-lg bg-footerGray">
+  <%= form_for( [evaluation, question], html: { class: "w-full flex flex-col" }, data: { controller: "form", action: "turbo:submit-end->form#reset" } ) do |form| %>
+    <h1 class="text-center font-bold text-evaluationStrong pt-4 text-2xl ">Add Question</h1>
+    <p class="flex flex-col py-5 px-10">
+      <%= form.label :name, class: "font-semibold text-sm text-evaluationStrong" %>
+      <%= form.text_field :name, placeholder: "Question name.", class: "rounded-lg my-2 font-semibold" %>
+    </p>
+    <p class="flex flex-col pb-5 px-10">
+      <%= form.label :kind, class: "font-semibold text-sm text-evaluationStrong" %>
+      <%= form.select :kind, options_for_select(Question.kinds.map { |key, value| [ key.titleize, Question.kinds.key(value) ] }), { include_blank: " - Pick your option -" }, { class: "rounded-lg my-2 font-semibold" } %>
+    </p>
+
+    <%= form.submit "Create Question", class: "text-white bg-evaluationStrong rounded-lg p-3 self-center mb-10 cursor-pointer" %>
+  <% end %>
+</div>

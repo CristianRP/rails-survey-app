@@ -1,1 +1,6 @@
 <%= render "shared/sections/show", model: @evaluation, color: "evaluationStrong" %>
+
+<div class="flex m-10 border-2">
+  <%= render "questions/form", evaluation: @evaluation, question: Question.new %>
+  <%= render "questions/questions", list: @evaluation.questions %>
+</div>

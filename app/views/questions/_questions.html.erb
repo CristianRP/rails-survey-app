@@ -1,0 +1,9 @@
+<%# locals: (list: Question.all) %>
+<div class="border-2 w-9/12 m-5" id="questions_all">
+<h3>
+Questions <<%= list.count %>>
+</h3>
+<% list.each do |item| %>
+  <%= render "questions/question", question: item %>
+<% end %>
+</div>
