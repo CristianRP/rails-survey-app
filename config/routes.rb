@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :chapters
   resources :evaluations do
-    resources :questions, only: :create
+    resources :questions, except: [:index, :new]
   end
   devise_for :users
 

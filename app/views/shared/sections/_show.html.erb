@@ -3,7 +3,7 @@
 <% if notice.present? %>
   <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block w-full" id="notice"><%= notice %></p>
 <% end %>
-<div id="<%= dom_id model %>" class="border-2 w-9/12 mx-auto flex h-48 shadow-lg rounded-lg my-20">
+<div id="<%= dom_id model %>" class="border-2 w-9/12 mx-auto flex h-48 shadow-lg rounded-lg my-16 ">
   <div class="w-48 flex items-center">
     <%= image_tag image[:name], width: image[:width], class: image[:class] %>
   </div>

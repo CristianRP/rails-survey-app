@@ -1,9 +1,11 @@
-<%# locals: (list: Question.all) %>
-<div class="border-2 w-9/12 m-5" id="questions_all">
-<h3>
-Questions <<%= list.count %>>
-</h3>
-<% list.each do |item| %>
-  <%= render "questions/question", question: item %>
-<% end %>
+<%# locals: (model: Evaluation.first, list: Question.all) %>
+<div class="border-2 w-9/12 m-5 p-4 rounded-lg bg-footerGray">
+  <div id="count">
+    <%= render "questions/count", list: list %>
+  </div>
+  <div class="h-96 overflow-y-auto" id="questions">
+    <% list.each do |item| %>
+      <%= render "questions/question", question: item %>
+    <% end %>
+  </div>
 </div>

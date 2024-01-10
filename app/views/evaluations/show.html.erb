@@ -1,6 +1,7 @@
 <%= render "shared/sections/show", model: @evaluation, color: "evaluationStrong" %>
 
+<%= turbo_stream_from @evaluation %>
 <div class="flex m-10 border-2">
   <%= render "questions/form", evaluation: @evaluation, question: Question.new %>
-  <%= render "questions/questions", list: @evaluation.questions %>
+  <%= render "questions/questions", model: @evaluation, list: @evaluation.questions %>
 </div>

@@ -1,0 +1,22 @@
+<%= turbo_frame_tag @question do %>
+  <div class="my-2 flex justify-between p-2 border-2 rounded-lg bg-white">
+    <%= form_for( [:evaluation, @question], html: { class: "flex flex-col w-5/6" }, data: { controller: "form", action: "turbo:submit-end->form#reset" } ) do |form| %>
+      <h1 class="font-bold text-evaluationStrong">Update Question</h1>
+
+      <div class="flex align-center">
+        <p class="flex flex-col py-5">
+          <%= form.label :name, class: "font-semibold text-sm text-evaluationStrong" %>
+          <%= form.text_field :name, placeholder: "Question name.", class: "rounded-lg my-2 font-semibold" %>
+        </p>
+        <p class="flex flex-col py-5 ml-5">
+          <%= form.label :kind, class: "font-semibold text-sm text-evaluationStrong" %>
+          <%= form.select :kind, options_for_select(Question.kinds.map { |key, value| [ key.titleize, Question.kinds.key(value) ] }, @question.kind), { include_blank: " - Pick your option -"}, { class: "rounded-lg my-2 font-semibold" } %>
+        </p>
+        <div class="flex gap-3 items-end">
+          <%= form.submit "Update", class: "text-white text-sm bg-evaluationStrong rounded-lg p-2 ml-5 cursor-pointer mb-8" %>
+          <%= link_to "Cancel", evaluation_question_path, class: "text-white text-sm bg-removeIcon rounded-lg p-2 cursor-pointer mb-8" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

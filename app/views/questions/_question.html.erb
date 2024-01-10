@@ -1,7 +1,24 @@
 <%# locals: (question: Question.first) %>
-<h1>
-  <%= question.name %>
-</h1>
-<h1>
-  <%= question.kind %>
-</h1>
+
+<%= turbo_frame_tag question do %>
+  <div class="my-2 flex justify-between p-2 border-2 rounded-lg bg-white">
+    <p class="text-sm">
+      Name:
+      <span class="font-semibold"><%= question.name %></span>
+    </p>
+
+    <p class="text-sm">
+      Question Kind:
+      <span class="font-semibold"><%= question.kind.humanize %></span>
+    </p>
+
+    <div class="flex flex-col gap-3">
+      <%= link_to edit_evaluation_question_path(question.section, question) do %>
+        <i class="fa-solid fa-pen text-editIcon"></i>
+      <% end %>
+      <%= button_to evaluation_question_path(question.section, question), method: :delete do %>
+        <i class="fa-solid fa-trash text-removeIcon"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
