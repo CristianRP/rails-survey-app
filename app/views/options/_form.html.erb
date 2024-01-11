@@ -1,0 +1,16 @@
+<%# locals: (question: Question.first, option: Option.new) %>
+<%= form_for [question.evaluation, question, option], html: { class: "p-5 flex flex-col" } do |form| %>
+
+  <h4 class="font-bold text-center mb-5"><%= action_name == "edit" ? "Update" : "Add" %> Options</h4>
+  <div class="my-2">
+    <%= form.rich_text_area :name, id: dom_id(question), class: "text-sm p-2 border-2" %>
+  </div>
+
+  <div class="my-2 flex justify-end gap-3">
+    <%= form.submit class: "p-2 rounded-lg bg-evaluationStrong text-white text-xs cursor-pointer" %>
+
+    <% if action_name == "edit" %>
+      <%= link_to "Cancel", evaluation_question_option_path, class: "p-2 text-xs rounded-lg bg-removeIcon text-white cursor-pointer" %>
+    <% end %>
+  </div>
+<% end %>

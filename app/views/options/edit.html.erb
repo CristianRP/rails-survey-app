@@ -1,0 +1,5 @@
+<%= turbo_frame_tag @option do %>
+  <div class="border-2 p-5 rounded-lg bg-footerGray">
+    <%= render "form", question: @option.question, option: @option %>
+  </div>
+<% end %>

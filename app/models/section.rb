@@ -1,6 +1,6 @@
 class Section < ApplicationRecord
   belongs_to :user
-  has_many :questions
+  has_many :questions, dependent: :destroy
 
   enum kind: {
     default: 0,

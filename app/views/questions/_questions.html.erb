@@ -3,7 +3,7 @@
   <div id="count">
     <%= render "questions/count", list: list %>
   </div>
-  <div class="h-96 overflow-y-auto" id="questions">
+  <div class="h-screen overflow-y-auto" id="questions">
     <% list.each do |item| %>
       <%= render "questions/question", question: item %>
     <% end %>

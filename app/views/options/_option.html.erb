@@ -1,0 +1,17 @@
+<%= turbo_frame_tag option do %>
+  <div class="border-2 flex justify-between p-3 m-2 rounded-lg">
+    <span class="text-sm">
+      <%= option.name %>
+    </span>
+
+    <div class="flex gap-5">
+      <%= link_to edit_evaluation_question_option_path(option.question.evaluation, option.question, option) do %>
+        <i class="fa-solid fa-pen text-editIcon"></i>
+      <% end %>
+
+      <%= button_to evaluation_question_option_path(option.question.evaluation, option.question, option), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } do %>
+        <i class="fa-solid fa-trash text-removeIcon"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>

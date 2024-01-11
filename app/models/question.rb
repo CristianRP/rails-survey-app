@@ -2,7 +2,7 @@ class Question < ApplicationRecord
   # TODO: check if question, would be used for another kind of section, if not just add :evaluation
   belongs_to :section
   belongs_to :evaluation, foreign_key: :section_id
-  has_many :options
+  has_many :options, dependent: :destroy
 
   default_scope -> { order(id: :asc) }
 

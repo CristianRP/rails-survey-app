@@ -1,0 +1,2 @@
+<%= turbo_stream.append "question_#{@question.id}_options", partial: 'options/option', locals: { option: @option } %>
+<%= turbo_stream.replace "question_#{@question.id}_form", partial: 'options/form', locals: { question: @question } %>
