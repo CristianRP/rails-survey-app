@@ -1,4 +1,4 @@
-<%# locals: (model: Section, image: {name: 'upload', width: '40', class: 'object-fit w-full p-2'}, show_body: false, color: 'main-color', notice: nil) %>
+<%# locals: (model: Section, image: {name: 'upload', width: '40', class: 'object-fit w-full p-2'}, color: 'main-color', notice: nil) %>
 <%= turbo_frame_tag 'modal' %>
 <% if notice.present? %>
   <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block w-full" id="notice"><%= notice %></p>
@@ -13,15 +13,9 @@
       <i class="fa-solid fa-square-poll-horizontal ml-5"></i>
     </p>
 
-    <% if show_body %>
-      <p class="my-2 text-sm font-semibold text-<%= color %>">
-        <%= model.body %>
-      </p>
-    <% else %>
-      <p class="my-2 text-sm font-semibold text-<%= color %>">
-        <%= model.description %>
-      </p>
-    <% end %>
+    <p class="my-2 text-sm font-semibold text-<%= color %>">
+      <%= model.description %>
+    </p>
 
     <p class="text-sm font-semibold text-<%= color %>">
       <%= model.user.email %>
