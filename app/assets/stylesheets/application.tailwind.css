@@ -12,3 +12,9 @@
 
 */
 @import 'actiontext.css';
+
+.trix-content img {
+  height: 300px;
+  width: 400px;
+  object-fit: contain;
+}
