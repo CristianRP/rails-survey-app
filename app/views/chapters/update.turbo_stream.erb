@@ -1,0 +1,11 @@
+
+<% if params[:chapter_body].present? %>
+  <%= turbo_stream.replace("chapter_#{@chapter.id}_body", partial: 'chapters/chapter_body') %>
+<% else %>
+  <%= turbo_stream.replace("chapter_#{@chapter.id}",
+                            partial: 'shared/sections/show',
+                            locals: {
+                              model: @chapter,
+                              color: 'chapterStrong'
+                            }) %>
+<% end %>

@@ -3,6 +3,8 @@ class Chapter < Section
 
   default_scope { where(kind: :chapter) }
 
+  has_rich_text :body
+
 private
 
   def set_default_kind

@@ -48,15 +48,7 @@ class ChaptersController < ApplicationController
   def update
     respond_to do |format|
       if @chapter.update(chapter_params)
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("chapter_#{@chapter.id}",
-                                                    partial: 'shared/sections/show',
-                                                    locals: {
-                                                      model: @chapter,
-                                                      show_body: true,
-                                                      color: 'chapterStrong'
-                                                    })
-        end
+        format.turbo_stream
         format.json { render :show, status: :ok, location: @chapter }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -82,6 +74,6 @@ private
   end
 
   def chapter_params
-    params.require(:chapter).permit(:name, :body)
+    params.require(:chapter).permit(:name, :description, :body)
   end
 end

@@ -1,0 +1,19 @@
+<%# locals: (chapter: Chapter.first) %>
+<%= turbo_frame_tag "chapter_#{chapter.id}_body", class: "border-2 w-full rounded-lg py-5" do %>
+  <%= form_with(model: chapter, class: "flex flex-col") do |form| %>
+    <%= hidden_field_tag "chapter_body", "true" %>
+    <h3 class="text-2xl font-semibold text-chapterStrong py-5">Editing Body</h3>
+    <div>
+      <%= form.rich_text_area :body %>
+    </div>
+
+    <div class="flex py-2 justify-end gap-5">
+      <span class="bg-chapterStrong p-2 rounded-lg cursor-pointer">
+        <%= form.submit class: "text-white font-semibold cursor-pointer" %>
+      </span>
+      <span class="bg-removeIcon p-2 rounded-lg">
+        <%= link_to "Cancel", :back, class: "text-white font-semibold" %>
+      </span>
+    </div>
+  <% end %>
+<% end %>

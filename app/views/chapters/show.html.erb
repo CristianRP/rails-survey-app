@@ -1,1 +1,5 @@
-<%= render "shared/sections/show", model: @chapter, show_body: true, color: "chapterStrong" %>
+<%= render "shared/sections/show", model: @chapter, color: "chapterStrong" %>
+
+<section class="flex p-10">
+  <%= render "chapter_body" %>
+</section>

@@ -1,3 +1,7 @@
-<%= render "shared/modal", title: "Update Chapter" do %>
-  <%= render "shared/sections/form", model: @chapter, show_body: true, color: "chapterStrong" %>
+<% if params[:body].present? %>
+  <%= render "body", chapter: @chapter %>
+<% else %>
+  <%= render "shared/modal", title: "Update Chapter" do %>
+    <%= render "shared/sections/form", model: @chapter, color: "chapterStrong" %>
+  <% end %>
 <% end %>

@@ -1,0 +1,20 @@
+<%= turbo_frame_tag "chapter_#{@chapter.id}_body", class: "border-2 w-full rounded-lg bg-footerGray p-5" do %>
+  <div class="flex justify-between pb-5">
+    <h3 class="text-2xl font-bold text-chapterStrong">Body</h3>
+    <%= link_to edit_chapter_path(@chapter, body: true), class: "bg-chapterStrong text-white text-sm font-semibold p-3 rounded-lg" do %>
+      Edit Body
+    <% end %>
+  </div>
+
+  <div>
+    <% if @chapter.body.present? %>
+      <%= @chapter.body %>
+    <% else %>
+      <p>
+        <span class="font-semibold">This chapter doesn't have any content yet...</span>
+        <br>
+        Please, click on the <strong>Edit body</strong> button to add some content!
+      </p>
+    <% end %>
+  </div>
+<% end %>
