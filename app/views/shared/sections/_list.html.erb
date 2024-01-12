@@ -1,10 +1,10 @@
-<%# locals: (list: Section, color: 'main-color', html_text: 'Sections<br>Surver Rails App', notice: nil) %>
+<%# locals: (list: Section, color: 'main-color', html_text: 'Sections<br>Surver Rails App', notice: nil, list_item_partial: "shared/sections/list_item") %>
 <% klass_name = list.klass.name %>
 <%= turbo_frame_tag 'modal' %>
 <% if notice.present? %>
   <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block w-full" id="notice"><%= notice %></p>
 <% end %>
-<section id="<%= klass_name.downcase.pluralize %>_all">
+<section>
   <div class="flex flex-col items-center w-full py-10">
     <h2 class="text-center text-3xl font-bold py-5 text-<%= color %>"><%= klass_name.pluralize.titleize %></h2>
     <p class="text-sm font-semibold text-center text-<%= color %>">
@@ -18,9 +18,9 @@
       <% end %>
     </div>
 
-    <div class="w-full">
+    <div class="w-full" id="<%= klass_name.downcase.pluralize %>_all">
       <% list.each do |item| %>
-        <%= render "shared/sections/list_item", model: item, color: color %>
+        <%= render list_item_partial, model: item, color: color %>
       <% end %>
     </div>
   </div>

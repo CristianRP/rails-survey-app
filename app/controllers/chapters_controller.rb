@@ -24,17 +24,11 @@ class ChaptersController < ApplicationController
     respond_to do |format|
       if @chapter.save
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace('chapters_all',
-                                                    partial: 'shared/sections/list',
+          render turbo_stream: turbo_stream.append('chapters_all',
+                                                    partial: 'shared/sections/list_item',
                                                     locals: {
-                                                      list: Chapter.all,
-                                                      color: 'chapterStrong',
-                                                      html_text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.<br>
-                                                        Nobis labore voluptates cum provident vel odio quo aliquid,<br>
-                                                        autem dolorem asperiores placeat! Officia adipisci a voluptatibus<br>
-                                                        ratione accusantium. Asperiores, a exercitationem.',
-                                                      notice: 'Chapter was successfully created.'
-                                                    })
+                                                      model: @chapter,
+                                                      color: 'chapterStrong' })
         end
         format.json { render :show, status: :created, location: @chapter }
       else

@@ -1,0 +1,2 @@
+<%= turbo_stream.remove "modal" %>
+<%= turbo_stream.append "surveys_all", partial: "surveys/survey", locals: { model: @survey, color: "surveyStrong" } %>

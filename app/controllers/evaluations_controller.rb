@@ -24,14 +24,10 @@ class EvaluationsController < ApplicationController
     respond_to do |format|
       if @evaluation.save
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace('evaluations_all',
-                                                    partial: 'shared/sections/list',
-                                                    locals: { list: Evaluation.all,
-                                                              color: 'evaluationStrong',
-                                                              html_text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem sit dolorum, <br>
-                                                                delectus praesentium voluptas quis assumenda? Recusandae ex illo nulla natus <br>
-                                                                accusantium dolorum aut? Aspernatur sapiente soluta unde ea aperiam?',
-                                                              notice: 'Evaluation was successfully created.' })
+          render turbo_stream: turbo_stream.append('evaluations_all',
+                                                   partial: 'shared/sections/list_item',
+                                                   locals: { model: @evaluation,
+                                                             color: 'evaluationStrong' })
         end
       else
         format.html { render :new, status: :unprocessable_entity }

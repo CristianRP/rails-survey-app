@@ -1,0 +1,2 @@
+<%= turbo_stream.remove "modal" %>
+<%= turbo_stream.replace dom_id(@survey), partial: "shared/sections/show", locals: { model: @survey, color: "surveyStrong" } %>

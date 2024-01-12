@@ -1,22 +1,38 @@
-<div id="<%= dom_id survey %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= survey.name %>
-  </p>
+<div id="<%= dom_id model %>" class="border-2 w-9/12 mx-auto flex h-40 rounded-lg shadow-lg p-2 my-5">
+  <div class="w-40">
+    <% if model.avatar.attached? %>
+      <%= image_tag model.avatar, class: "object-fit w-full" %>
+    <% else %>
+    <%= image_tag 'upload', class: "object-fit w-full" %>
+    <% end %>
+  </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= survey.description %>
-  </p>
+  <div class="w-full p-3">
+    <p>
+      Name:
+      <strong class="font-semibold">
+        <%= model.name %>
+      </strong>
+    </p>
+    <p>
+      Body:
+      <strong class="font-semibold">
+        <%= model.name %>
+      </strong>
+    </p>
+    <p>
+      User:
+      <strong class="font-semibold">
+        <%= model.user.email %>
+      </strong>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= survey.user_id %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this survey", survey, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this survey", edit_survey_path(survey), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+    <div class="flex justify-end">
+      <%= link_to send("#{model.class.name.underscore}_path", model) do %>
+        <div class="text-white text-sm bg-surveyStrong font-semibold rounded-lg py-2 px-5">
+          See more
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

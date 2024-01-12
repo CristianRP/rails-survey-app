@@ -5,7 +5,11 @@
 <% end %>
 <div id="<%= dom_id model %>" class="border-2 w-9/12 mx-auto flex h-48 shadow-lg rounded-lg my-16 ">
   <div class="w-48 flex items-center">
-    <%= image_tag image[:name], width: image[:width], class: image[:class] %>
+    <% if model.respond_to?(:avatar) && model.avatar.attached? %>
+      <%= image_tag model.avatar, width: image[:width], class: image[:class] %>
+    <% else %>
+      <%= image_tag image[:name], width: image[:width], class: image[:class] %>
+    <% end %>
   </div>
   <div class="w-full p-5">
     <p class="text-3xl font-bold text-<%= color %>">

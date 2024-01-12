@@ -1,14 +1,26 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Surveys</h1>
-    <%= link_to "New survey", new_survey_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
-  <div id="surveys" class="min-w-full">
-    <%= render @surveys %>
-  </div>
-</div>
+<p class="text-surveyStrong bg-surveyStrong" hidden>.</p>
+<% if @surveys.any? %>
+  <%
+=begin%>
+ <%= render "surveys/surveys", list: @surveys, html_text: "", color: "surveyStrong" %> 
+<%
+=end%>
+ <%= render "shared/sections/list", {
+    list: @surveys,
+    color: "surveyStrong",
+    html_text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem sit dolorum, <br>
+      delectus praesentium voluptas quis assumenda? Recusandae ex illo nulla natus <br>
+      accusantium dolorum aut? Aspernatur sapiente soluta unde ea aperiam?",
+    list_item_partial: "surveys/survey"
+  }%>
+<% else %>
+  <%= render "/shared/sections/welcome", {
+    kind: "survey",
+    image: { name: "4883612", width: 500 },
+    color: "surveyStrong",
+    container_css: "flex-col-reverse justify-center p-28",
+    html_text: "      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque velit<br>
+        consequuntur? Rerum neque saepe minus, alias nihil.",
+    url: new_survey_path
+  } %>
+<% end %>
