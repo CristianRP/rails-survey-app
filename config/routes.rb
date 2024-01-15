@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :surveys
+  resources :surveys do
+    resources :survey_sections, except: :index
+  end
   resources :chapters
   resources :evaluations do
     resources :questions, except: [:index, :new] do
