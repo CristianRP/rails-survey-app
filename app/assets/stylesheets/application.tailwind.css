@@ -11,10 +11,10 @@
 }
 
 */
-@import 'actiontext.css';
-
-.trix-content img {
-  height: 300px;
-  width: 400px;
-  object-fit: contain;
+@layer components {
+  .check-box {
+    @apply border-2 bg-footerGray text-black shadow-lg;
+  }
 }
+
+@import 'actiontext.css';

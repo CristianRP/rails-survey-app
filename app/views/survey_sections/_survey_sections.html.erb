@@ -1,0 +1,13 @@
+<section class="border-2 w-9/12 mx-auto flex flex-col rounded-lg shadow-lg my-20 p-10">
+  <div class="flex justify-end mb-5">
+    <%= link_to new_survey_survey_section_path(survey), data: { turbo_frame: "modal", controller: "modal", action: "modal#show" }, class: "bg-surveyStrong font-semibold shadow-lg p-2 rounded-lg text-white" do %>
+      Add Sections
+    <% end %>
+  </div>
+
+  <div id="sections">
+    <% sections.each do |section| %>
+      <%= render "survey_sections/survey_section", section: section %>
+    <% end %>
+  </div>
+</section>

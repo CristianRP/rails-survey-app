@@ -1,0 +1,22 @@
+<div id="<%= dom_id section %>" class="flex border-2 p-5 my-5 rounded-lg shadow-lg items-center border-red-200">
+  <div class="flex flex-col justify-center items-center mr-5 gap-2">
+    <i class="fas fa-arrow-circle-up"></i>
+    <i class="fas fa-arrow-circle-down"></i>
+  </div>
+
+  <div class="w-8/12 flex flex-col mr-5">
+    <span class="font-semibold"><%= section.name %></span>
+    <span class="text-sm"><%= section.description %></span>
+  </div>
+
+  <div class="w-3/12 mr-5">
+    <span class="font-semibold">
+      <%= time_ago_in_words(section.created_at) %>
+    </span>
+  </div>
+  <div class="w-1/12 flex justify-end m-5">
+    <%= button_to "#", id: "remove_section_#{section.id}", form: { data: { turbo_confirm: "Are you sure?" } } do %>
+      <i class="fa-solid fa-trash text-removeIcon"></i>
+    <% end %>
+  </div>
+</div>

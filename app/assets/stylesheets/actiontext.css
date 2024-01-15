@@ -29,3 +29,9 @@
   padding: 0 !important;
   max-width: 100% !important;
 }
+
+.trix-content img {
+  height: 300px;
+  width: 400px;
+  object-fit: contain;
+}

@@ -1,0 +1,25 @@
+<%= render "shared/modal", title: "All Sections" do %>
+  <%= form_with( model: [@survey, SurveySection.new], data: { controller: "modal", action: "submit->modal#close" } ) do |form| %>
+    <div class="flex flex-col h-96 my-5 p-5 border-2 border-red-200 overflow-y-auto">
+      <%= collection_check_boxes(:sections, :ids, Section.not_in_survey(@survey.id), :id, :name) do |tag| %>
+        <div class="flex" >
+          <%= tag.check_box class: "hidden peer" %>
+          <%= tag.label class: "border-2 font-semibold rounded-lg  w-full my-2 text-white peer-checked:check-box" do %>
+            <div class="flex items-center">
+              <%= image_tag "upload", class: "object-fit h-full w-20" %>
+              <div class="ml-5 flex flex-col">
+                <span><%= tag.object.name %></span>
+                <span><%= tag.object.description %></span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="flex py-2 justify-end gap-5">
+      <%= form.submit "Add Section", class: "text-white font-semibold bg-surveyStrong p-2 rounded-lg" %>
+      <%= link_to "Cancel", :back, class: "text-white font-semibold bg-removeIcon p-2 rounded-lg" %>
+    </div>
+  <% end %>
+<% end %>

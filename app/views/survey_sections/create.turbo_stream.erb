@@ -1,0 +1,3 @@
+<% @new_sections.each do |section| %>
+  <%= turbo_stream.append "sections", partial: "survey_sections/survey_section", locals: { section: section } %>
+<% end%>
