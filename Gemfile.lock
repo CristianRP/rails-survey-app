@@ -113,6 +113,7 @@ GEM
     foreman (0.87.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hirb (0.7.3)
     hotwire-livereload (1.3.0)
       actioncable (>= 6.0.0)
       listen (>= 3.0.0)
@@ -284,6 +285,7 @@ DEPENDENCIES
   debug
   devise
   foreman
+  hirb (~> 0.7.3)
   hotwire-livereload (~> 1.3)
   image_processing (~> 1.2)
   importmap-rails
