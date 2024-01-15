@@ -1,5 +1,7 @@
 class SurveySectionsController < ApplicationController
-  before_action :set_survey, only: %i(new create)
+  before_action :set_survey, only: %i(new create destroy)
+  before_action :set_section, only: :destroy
+  before_action :set_survey_section, only: :destroy
 
   def new; end
 
@@ -21,9 +23,21 @@ class SurveySectionsController < ApplicationController
     end
   end
 
+  def destroy
+    @section_section.destroy
+  end
+
 private
 
   def set_survey
     @survey = Survey.find_by(id: params[:survey_id])
+  end
+
+  def set_survey_section
+    @section_section = SurveySection.where(survey_id: params[:survey_id], section_id: params[:id]).first
+  end
+
+  def set_section
+    @section = Section.find_by(id: params[:id])
   end
 end

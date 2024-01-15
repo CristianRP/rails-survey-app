@@ -7,7 +7,7 @@
 
   <div id="sections">
     <% sections.each do |section| %>
-      <%= render "survey_sections/survey_section", section: section %>
+      <%= render "survey_sections/survey_section", survey: survey, section: section %>
     <% end %>
   </div>
 </section>

@@ -15,7 +15,7 @@
     </span>
   </div>
   <div class="w-1/12 flex justify-end m-5">
-    <%= button_to "#", id: "remove_section_#{section.id}", form: { data: { turbo_confirm: "Are you sure?" } } do %>
+    <%= button_to survey_survey_section_path(survey, section), method: :delete, id: "remove_section_#{section.id}", form: { data: { turbo_confirm: "Are you sure?" } } do %>
       <i class="fa-solid fa-trash text-removeIcon"></i>
     <% end %>
   </div>
