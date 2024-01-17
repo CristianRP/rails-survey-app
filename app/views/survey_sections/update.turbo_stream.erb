@@ -1,0 +1,7 @@
+<% if params[:operation] == "up"  %>
+  <%= turbo_stream.replace dom_id(@section), partial: "survey_sections/survey_section", locals: { survey: @survey, section: @section_to_replace.section, index: @index, size: @size} %>
+  <%= turbo_stream.replace dom_id(@section_to_replace.section), partial: "survey_sections/survey_section", locals: { survey: @survey, section: @section, index: @index_to_replace, size: @size} %>
+<% else %>
+  <%= turbo_stream.replace dom_id(@section_to_replace.section), partial: "survey_sections/survey_section", locals: { survey: @survey, section: @section, index: @index_to_replace, size: @size} %>
+  <%= turbo_stream.replace dom_id(@section), partial: "survey_sections/survey_section", locals: { survey: @survey, section: @section_to_replace.section, index: @index, size: @size} %>
+<% end %>

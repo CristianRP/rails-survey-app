@@ -1,7 +1,18 @@
-<div id="<%= dom_id section %>" class="flex border-2 p-5 my-5 rounded-lg shadow-lg items-center border-red-200">
+<div id="<%= dom_id section %>" class="flex border-2 p-5 my-5 rounded-lg shadow-lg items-center">
   <div class="flex flex-col justify-center items-center mr-5 gap-2">
-    <i class="fas fa-arrow-circle-up"></i>
-    <i class="fas fa-arrow-circle-down"></i>
+    <%= index %>
+    <%= index + 1000 %>
+    <% unless index == 0 %>
+      <%= button_to survey_survey_section_path(survey, section), method: :patch, class: "cursor-pointer", params: { operation: :up, index: index, size: size } do %>
+        <i class="fas fa-arrow-circle-up"></i>
+      <% end %>
+    <% end %>
+
+    <% unless index == size - 1  %>
+      <%= button_to survey_survey_section_path(survey, section), method: :patch, class: "cursor-pointer", params: { operation: :down, index: index, size: size } do %>
+        <i class="fas fa-arrow-circle-down"></i>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="w-8/12 flex flex-col mr-5">
