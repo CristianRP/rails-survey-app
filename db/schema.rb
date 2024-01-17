@@ -83,7 +83,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_192957) do
   create_table "survey_sections", force: :cascade do |t|
     t.bigint "survey_id", null: false
     t.bigint "section_id", null: false
-    t.integer "order"
+    t.integer "order", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["section_id"], name: "index_survey_sections_on_section_id"
