@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: %i(show edit update destroy)
+  before_action :set_survey, only: %i(show edit update destroy deliver add_emails)
 
   # GET /surveys or /surveys.json
   def index
@@ -51,16 +51,28 @@ class SurveysController < ApplicationController
   end
 
   def deliver
-    SurveyMailer.with(email: 'cristianramirezgt@gmail.com').welcome.deliver_later
+    SurveyMailer.with(
+      email: deliver_survey_params[:send_to],
+      subject: deliver_survey_params[:subject],
+      message: deliver_survey_params[:message],
+      survey: @survey
+    ).welcome.deliver_later
+  end
+
+  def add_emails
   end
 
 private
 
   def set_survey
-    @survey = Survey.find(params[:id])
+    @survey = Survey.find(params[:id] || params[:survey_id])
   end
 
   def survey_params
     params.require(:survey).permit(:name, :description, :avatar)
+  end
+
+  def deliver_survey_params
+    { send_to: params[:send_to], subject: params[:subject], message: params[:message] }
   end
 end

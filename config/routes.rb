@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  resources :audits, only: :show
+
   resources :surveys do
-    post 'deliver'
+    post :deliver
+    get 'add/emails', to: 'surveys#add_emails'
     resources :survey_sections, except: [:index, :show]
   end
   resources :chapters

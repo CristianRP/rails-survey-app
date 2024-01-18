@@ -1,0 +1,23 @@
+<%= render "shared/modal", title: "Add Emails" do %>
+  <%= form_with( url: survey_deliver_path(@survey), id: "send_survey_form", class: "flex flex-col" ) do |form| %>
+    <div class="flex items-center gap-5 my-2">
+      <%= form.label :send_to, "Send to:", class: "text-white font-bold w-2/12" %>
+      <%= form.text_field :send_to, class: "rounded-lg p-2 text-sm font-semibold w-full", placeholder: "example@mail.com" %>
+    </div>
+
+    <div class="flex items-center gap-5 my-2">
+      <%= form.label :subject, "Subject:", class: "text-white font-bold w-2/12" %>
+      <%= form.text_field :subject, class: "rounded-lg p-2 text-sm font-semibold w-full" %>
+    </div>
+
+    <div class="flex flex-col gap-5 my-5">
+      <%= form.label :message, "Message:", class: "text-white font-bold w-2/12" %>
+      <%= form.text_area :message, class: "rounded-lg p-2 text-sm font-semibold w-full h-48" %>
+    </div>
+
+    <div class="flex py-2 justify-end gap-5">
+      <%= form.submit class: "text-white font-semibold bg-surveyStrong p-2 rounded-lg cursor-pointer" %>
+      <%= link_to 'Cancel', :back,  class: "text-white font-semibold bg-removeIcon p-2 rounded-lg cursor-pointer" %>
+    </div>
+  <% end %>
+<% end %>

@@ -36,9 +36,13 @@
     <% end %>
     <%# Check if we can move this %>
     <% if controller_name == 'surveys' %>
-      <i class="fas fa-share"></i>
+      <%= link_to survey_add_emails_path(model), id: "send_survey", data: { turbo_frame: "modal" } do %>
+        <i class="fas fa-share"></i>
+      <% end %>
       <i class="fas fa-cloud-download"></i>
-      <i class="fas fa-users"></i>
+      <%= link_to survey_add_emails_path(model), id: "add_emails", data: { turbo_frame: "modal" } do %>
+        <i class="fas fa-users"></i>
+      <% end %>
     <% end %>
   </div>
 </div>

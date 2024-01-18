@@ -4,6 +4,17 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   </head>
   <body>
-    You pato<%=  @email %>
+    <h1><%= @survey.name %></h1>
+    <hr>
+    <p>
+      Hello, <strong><%= @email %></strong>
+      You've been invited to answer this survey.
+    </p>
+    <p>
+      <%= @message %>
+    </p>
+    <p>
+      Please, click on the link: <a href="<%= @url %>"><%= @survey.name %></a>
+    </p>
   </body>
 </html>
