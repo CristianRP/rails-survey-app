@@ -34,5 +34,11 @@
     <%= button_to send("#{model.class.name.underscore}_path", model), id: "remove_#{model}", method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } do %>
       <i class="fa-solid fa-trash text-removeIcon"></i>
     <% end %>
+    <%# Check if we can move this %>
+    <% if controller_name == 'surveys' %>
+      <i class="fas fa-share"></i>
+      <i class="fas fa-cloud-download"></i>
+      <i class="fas fa-users"></i>
+    <% end %>
   </div>
 </div>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :surveys do
+    post 'deliver'
     resources :survey_sections, except: [:index, :show]
   end
   resources :chapters

@@ -50,6 +50,10 @@ class SurveysController < ApplicationController
     end
   end
 
+  def deliver
+    SurveyMailer.with(email: 'cristianramirezgt@gmail.com').welcome.deliver_later
+  end
+
 private
 
   def set_survey
