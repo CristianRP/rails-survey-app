@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: %i(show edit update destroy deliver add_emails export_answers)
+  before_action :set_survey, except: %i(index new create)
 
   # GET /surveys or /surveys.json
   def index
@@ -51,7 +51,7 @@ class SurveysController < ApplicationController
   end
 
   def deliver
-    log = SurveyLog.create(email: deliver_survey_params[:send_to], status: 0, survey_id: @survey.id)
+    log = SurveyLog.create(email: deliver_survey_params[:send_to], status: 1, survey_id: @survey.id)
     SurveyMailer.with(
       log: log,
       subject: deliver_survey_params[:subject],
@@ -68,6 +68,10 @@ class SurveysController < ApplicationController
     respond_to do |format|
       format.csv { send_data @answers.to_csv, filename: "#{@survey.name}-#{Time.zone.today}.csv" }
     end
+  end
+
+  def participants
+
   end
 
 private

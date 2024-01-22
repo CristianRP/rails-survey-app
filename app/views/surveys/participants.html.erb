@@ -1,0 +1,39 @@
+<%= turbo_frame_tag 'participants' do %>
+  <div class="flex py-2 justify-end">
+    <%= link_to :back, class: "bg-removeIcon p-2 rounded-lg text-white font-semibold" do %>
+      Back
+    <% end %>
+  </div>
+
+  <div>
+    <% @survey.survey_logs.each do |log| %>
+      <div class="flex flex-col border-2 my-5 p-5 shadow-lg rounded-lg">
+        <p class: "flex mb-2 text-sm">
+          Email:
+          <span class="ml-5 font-semibold text-sm"><%= log.email %></span>
+        </p>
+
+        <p class="flex mb-2 text-sm">
+          Token:
+          <span class="ml-5 font-semibold text-sm"><%= log.token %></span>
+        </p>
+
+        <p class="flex text-sm">
+          Status:
+          <% if log.default?  %>
+            <% color = "bg-removeIcon" %>
+          <% elsif log.viewed? %>
+            <% color = "bg-main-color" %>
+          <% elsif log.sent? %>
+            <% color = "bg-chapterStrong" %>
+          <% elsif log.process? %>
+            <% color = "bg-surveyStrong" %>
+          <% elsif log.finish? %>
+            <% color = "bg-removeIcon" %>
+          <% end %>
+          <span class="ml-5 text-sm font-semibold <%= color %> py-2 px-5 rounded-lg text-white"><%= log.status %></span>
+        </p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

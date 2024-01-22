@@ -1,14 +1,18 @@
 <section class="border-2 w-9/12 mx-auto flex flex-col rounded-lg shadow-lg my-20 p-10">
-  <div class="flex justify-end mb-5">
-    <%= link_to new_survey_survey_section_path(survey), data: { turbo_frame: "modal", controller: "modal", action: "modal#show" }, class: "bg-surveyStrong font-semibold shadow-lg p-2 rounded-lg text-white" do %>
-      Add Sections
-    <% end %>
-  </div>
-
-  <div id="sections">
-    <% size = sections.size %>
-    <% sections.each_with_index do |section, index| %>
-      <%= render "survey_sections/survey_section", survey: survey, section: section, index: index, size: size %>
-    <% end %>
-  </div>
+  <%= turbo_frame_tag 'participants' do %>
+    <div class="flex justify-end mb-5">
+      <%= link_to survey_participants_path(survey) do %>
+        <i class="fas fa-users text-surveyStrong text-2xl mr-5"></i>
+      <% end %>
+      <%= link_to new_survey_survey_section_path(survey), data: { turbo_frame: "modal", controller: "modal", action: "modal#show" }, class: "bg-surveyStrong font-semibold shadow-lg p-2 rounded-lg text-white" do %>
+        Add Sections
+      <% end %>
+    </div>
+    <div id="sections">
+      <% size = sections.size %>
+      <% sections.each_with_index do |section, index| %>
+        <%= render "survey_sections/survey_section", survey: survey, section: section, index: index, size: size %>
+      <% end %>
+    </div>
+  <% end %>
 </section>

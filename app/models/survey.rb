@@ -3,6 +3,7 @@ class Survey < ApplicationRecord
   has_many :survey_sections
   has_many :sections, through: :survey_sections
   has_many :answers, dependent: :destroy
+  has_many :survey_logs, dependent: :destroy
 
   has_one_attached :avatar, dependent: :destroy
 

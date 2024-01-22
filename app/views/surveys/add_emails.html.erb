@@ -1,5 +1,5 @@
 <%= render "shared/modal", title: "Add Emails" do %>
-  <%= form_with( url: survey_deliver_path(@survey), id: "send_survey_form", class: "flex flex-col" ) do |form| %>
+  <%= form_with( url: survey_deliver_path(@survey), id: "send_survey_form", class: "flex flex-col", data: { controller: "modal", action: "submit->modal#close" } ) do |form| %>
     <div class="flex items-center gap-5 my-2">
       <%= form.label :send_to, "Send to:", class: "text-white font-bold w-2/12" %>
       <%= form.text_field :send_to, class: "rounded-lg p-2 text-sm font-semibold w-full", placeholder: "example@mail.com" %>

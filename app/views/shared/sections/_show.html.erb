@@ -42,9 +42,6 @@
       <%= link_to survey_export_answers_path(model, format: :csv), id: "export_answers" do %>
         <i class="fas fa-cloud-download"></i>
       <% end %>
-      <%= link_to survey_add_emails_path(model), id: "add_emails", data: { turbo_frame: "modal" } do %>
-        <i class="fas fa-users"></i>
-      <% end %>
     <% end %>
   </div>
 </div>

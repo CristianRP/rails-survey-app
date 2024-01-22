@@ -4,8 +4,12 @@ class AuditsController < ApplicationController
   before_action :set_survey, only: %i(index save_answers)
 
   def index
-    @token = params[:token]
     @step = params[:step].to_i
+    set_log
+
+    @log.update(status: :viewed) if @log.default?
+    @log.update(status: :process) unless @step.zero?
+
     @total = @survey.sections.size
   end
 
@@ -21,6 +25,9 @@ class AuditsController < ApplicationController
   end
 
   def finish
+    set_log
+
+    @log.update(status: :finish) if @log.process?
     @survey = Survey.find_by(id: params[:id])
   end
 
@@ -29,5 +36,11 @@ private
   def set_survey
     @survey = Survey.find_by(uuid: params[:uuid])
     redirect_to root_path if @survey.nil?
+  end
+
+  def set_log
+    @token = params[:token]
+    @log = SurveyLog.find_by(token: @token)
+    redirect_to root_path if @log.finish?
   end
 end
