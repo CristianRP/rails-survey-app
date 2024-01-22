@@ -11,6 +11,7 @@ class AuditsController < ApplicationController
     @log.update(status: :process) unless @step.zero?
 
     @total = @survey.sections.size
+    @progress_state = @step.to_f.fdiv(@total.to_f) * 100
   end
 
   def save_answers

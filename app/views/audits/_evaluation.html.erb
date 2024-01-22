@@ -1,20 +1,6 @@
 <section class="bg-main-color p-10">
   <div class="bg-white px-32 pb-32 pt-16 rounded-lg flex flex-col justify-center">
-    <div class="mb-24 flex justify-between">
-      <%= link_to audits_index_path(step: step - 1), class: "text-white font-semibold bg-removeIcon py-2 px-5 text-sm rounded-lg" do %>
-        Back
-      <% end %>
-
-      <% unless @total == @step %>
-        <%= link_to audits_index_path(step: step + 1), class: "text-white font-semibold bg-evaluationStrong py-2 px-5 text-sm rounded-lg" do %>
-          Next
-        <% end %>
-      <% else %>
-        <%= link_to audits_finish_path(id: survey.id, token: token), class: "text-white font-semibold bg-evaluationStrong py-2 px-5 text-sm rounded-lg" do %>
-          Finish Survey
-        <% end %>
-      <% end %>
-    </div>
+    <%= render "header", step: step, progress_state: progress_state, survey: survey, token: token %>
 
     <div class="flex flex-col justify-center">
       <h2 class="text-main-color font-bold text-5xl mt-1 mb-0 text-center"><%= evaluation.name %></h2>

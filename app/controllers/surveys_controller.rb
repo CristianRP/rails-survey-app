@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
 
   # GET /surveys or /surveys.json
   def index
-    @surveys = Survey.all
+    @surveys = current_user.surveys.all
   end
 
   # GET /surveys/1 or /surveys/1.json

@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-  def index
-  end
+  skip_before_action :authenticate_user!
 
-  def landing_page
-  end
+  def index; end
+
+  def landing_page; end
 end

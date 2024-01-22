@@ -3,7 +3,7 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations or /evaluations.json
   def index
-    @evaluations = Evaluation.all
+    @evaluations = current_user.evaluations.all
   end
 
   # GET /evaluations/1 or /evaluations/1.json

@@ -1,13 +1,13 @@
 <main>
   <% if @survey.sections.any? %>
     <% if @step == 0 %>
-      <%= render "welcome", survey: @survey, step: @step %>
+      <%= render "welcome", survey: @survey, step: @step, token: @token, progress_state: @progress_state %>
     <% else %>
       <% section = @survey.survey_sections.find_by(order: @step).section %>
       <% if section.evaluation? %>
-        <%= render "evaluation", evaluation: section, step: @step, token: @token, survey: @survey %>
+        <%= render "evaluation", evaluation: section, step: @step, token: @token, survey: @survey, progress_state: @progress_state %>
       <% else %>
-        <%= render "chapter", chapter: section, step: @step, token: @token, survey: @survey %>
+        <%= render "chapter", chapter: section, step: @step, token: @token, survey: @survey, progress_state: @progress_state %>
       <% end %>
     <% end %>
   <% else %>
