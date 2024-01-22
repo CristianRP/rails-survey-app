@@ -1,0 +1,20 @@
+<section class="flex justify-center px-20 py-16">
+  <div class="bg-white px-32 pb-32 pt-16 rounded-lg flex flex-col justify-center">
+    <div class="flex flex-col justify-center">
+      <h4 class="text-main-color font-semibold text-2xl mt-5 mb-2 text-center">Thank You!</h4>
+      <h2 class="text-main-color font-bold text-5xl mt-1 mb-0 text-center"><%= @survey.name %></h2>
+      <p class="flex justify-center mt-1 mb-5">
+        <span class="text-main-color font-bold text-2xl"><%= @survey.description %></span>
+      </p>
+
+      <div class="mx-auto my-10 h-80">
+        <%= image_tag "thanks", class: "object-fit h-ful w-full" %>
+      </div>
+
+      <p class="my-3 text-main-color font-semibold text-center">
+        Thanks for answer this Survey.
+        Have a good day.
+      </p>
+    </div>
+  </div>
+</section>

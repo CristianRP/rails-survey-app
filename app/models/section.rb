@@ -4,6 +4,8 @@ class Section < ApplicationRecord
   has_many :survey_sections
   has_many :surveys, through: :survey_sections
 
+  has_rich_text :body
+
   scope :not_in_survey, lambda { |survey_id|
                           where.not(id: joins(:survey_sections).where(
                             survey_sections: { survey_id: survey_id }

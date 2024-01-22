@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :audits, only: :show
+  get 'audits/:uuid/:token/:step', to: 'audits#index', as: :audits_index
+  post 'save/answers', to: 'audits#save_answers', as: :audits_save_answer
+  get 'finish', to: 'audits#finish', as: :audits_finish
 
   resources :surveys do
     post :deliver

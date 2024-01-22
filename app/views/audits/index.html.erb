@@ -1,0 +1,20 @@
+<main>
+  <% if @survey.sections.any? %>
+    <% if @step == 0 %>
+      <%= render "welcome", survey: @survey, step: @step %>
+    <% else %>
+      <% section = @survey.survey_sections.find_by(order: @step).section %>
+      <% if section.evaluation? %>
+        <%= render "evaluation", evaluation: section, step: @step, token: @token, survey: @survey %>
+      <% else %>
+        <%= render "chapter", chapter: section, step: @step, token: @token, survey: @survey %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div>
+      <p>
+        There's nothing to show
+      </p>
+    </div>
+  <% end %>
+</main>

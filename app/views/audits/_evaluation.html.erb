@@ -1,0 +1,56 @@
+<section class="bg-main-color p-10">
+  <div class="bg-white px-32 pb-32 pt-16 rounded-lg flex flex-col justify-center">
+    <div class="mb-24 flex justify-between">
+      <%= link_to audits_index_path(step: step - 1), class: "text-white font-semibold bg-removeIcon py-2 px-5 text-sm rounded-lg" do %>
+        Back
+      <% end %>
+
+      <% unless @total == @step %>
+        <%= link_to audits_index_path(step: step + 1), class: "text-white font-semibold bg-evaluationStrong py-2 px-5 text-sm rounded-lg" do %>
+          Next
+        <% end %>
+      <% else %>
+        <%= link_to audits_finish_path(id: survey.id), class: "text-white font-semibold bg-evaluationStrong py-2 px-5 text-sm rounded-lg" do %>
+          Finish Survey
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="flex flex-col justify-center">
+      <h2 class="text-main-color font-bold text-5xl mt-1 mb-0 text-center"><%= evaluation.name %></h2>
+      <p class="flex justify-center mt-1 mb-5">
+        <span class="text-main-color font-bold text-2xl"><%= evaluation.description %></span>
+      </p>
+    </div>
+
+    <div>
+      <%= form_with(url: audits_save_answer_path(user_token: token), method: :post) do |form| %>
+        <% evaluation.questions.each do |question| %>
+          <div class="mt-10 mb-16 mx-5 p-5 border-2 rounded-lg flex flex-col shadow-lg">
+            <div class="m-2 text-main-color font-bold text-lg">
+              <%= question.name %>
+            </div>
+            <div class="my-5">
+              <% if question.text_free? %>
+                <% answer = Answer.find_by(question_id: question.id, user_token: token) %>
+                <%= form.text_area("question[ids][#{question.id}]", value: answer&.name || "", class: "border-2 p-5 rounded-lg w-full font-semibold text-sm") %>
+              <% else %>
+                <% question.options.each do |option| %>
+                  <div class="flex w-full items-center rounded-lg p-2">
+                    <% answer = Answer.find_by(name: option.id, user_token: token) %>
+                    <%= form.radio_button("question[ids][#{question.id}]", option.id, checked: answer.present?, id: "#{option.id}", class: "border-2 mr-5") %>
+                    <span><%= option.name.to_plain_text %></span>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <div class="flex py-2 justify-end">
+          <%= form.submit "Submit Answer", class: "text-white font-semibold rounded-lg bg-evaluationStrong p-2 cursor-pointer" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+

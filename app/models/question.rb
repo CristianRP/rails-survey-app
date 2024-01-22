@@ -3,6 +3,7 @@ class Question < ApplicationRecord
   belongs_to :section
   belongs_to :evaluation, foreign_key: :section_id
   has_many :options, dependent: :destroy
+  has_one :answer
 
   default_scope -> { order(id: :asc) }
 

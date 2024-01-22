@@ -51,8 +51,9 @@ class SurveysController < ApplicationController
   end
 
   def deliver
+    log = SurveyLog.create(email: deliver_survey_params[:send_to], status: 0, survey_id: @survey.id)
     SurveyMailer.with(
-      email: deliver_survey_params[:send_to],
+      log: log,
       subject: deliver_survey_params[:subject],
       message: deliver_survey_params[:message],
       survey: @survey
