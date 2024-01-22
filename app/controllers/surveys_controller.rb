@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: %i(show edit update destroy deliver add_emails)
+  before_action :set_survey, only: %i(show edit update destroy deliver add_emails export_answers)
 
   # GET /surveys or /surveys.json
   def index
@@ -60,7 +60,14 @@ class SurveysController < ApplicationController
     ).welcome.deliver_later
   end
 
-  def add_emails
+  def add_emails; end
+
+  def export_answers
+    @answers = @survey.answers
+
+    respond_to do |format|
+      format.csv { send_data @answers.to_csv, filename: "#{@survey.name}-#{Time.zone.today}.csv" }
+    end
   end
 
 private

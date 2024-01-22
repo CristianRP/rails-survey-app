@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :surveys do
     post :deliver
     get 'add/emails', to: 'surveys#add_emails'
+    get 'export/answers', to: 'surveys#export_answers'
     resources :survey_sections, except: [:index, :show]
   end
   resources :chapters
