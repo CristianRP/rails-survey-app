@@ -1,3 +1,12 @@
+<div class="absolute z-10 top-0 left-0 w-full h-full items-center justify-center flex hidden" id="answers_submitted" data-controller="message">
+  <div class="bg-evaluationStrong p-5 text-white flex justify-center items-center gap-5 rounded-lg">
+    <span class="font-semibold">Your answers have been saved.</span>
+    <button data-action="message#remove">
+      <i class="fas fa-times-circle"></i>
+    </button>
+  </div>
+</div>
+
 <section class="bg-main-color p-10">
   <div class="bg-white px-32 pb-32 pt-16 rounded-lg flex flex-col justify-center">
     <%= render "header", step: step, progress_state: progress_state, survey: survey, token: token %>
@@ -10,7 +19,10 @@
     </div>
 
     <div>
-      <%= form_with(url: audits_save_answer_path(user_token: token, uuid: survey.uuid), method: :post) do |form| %>
+      <%= form_with(url: audits_save_answer_path(user_token: token, uuid: survey.uuid), method: :post, data: { controller: "message", action: "message#show" }) do |form| %>
+        <div class="flex py-2 justify-end">
+          <%= form.submit "Submit Answer", class: "text-white font-semibold rounded-lg bg-evaluationStrong p-2 cursor-pointer" %>
+        </div>
         <% evaluation.questions.each do |question| %>
           <div class="mt-10 mb-16 mx-5 p-5 border-2 rounded-lg flex flex-col shadow-lg">
             <div class="m-2 text-main-color font-bold text-lg">
@@ -32,9 +44,6 @@
             </div>
           </div>
         <% end %>
-        <div class="flex py-2 justify-end">
-          <%= form.submit "Submit Answer", class: "text-white font-semibold rounded-lg bg-evaluationStrong p-2 cursor-pointer" %>
-        </div>
       <% end %>
     </div>
   </div>

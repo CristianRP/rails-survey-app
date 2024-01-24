@@ -30,6 +30,13 @@ class EvaluationsController < ApplicationController
                                                              color: 'evaluationStrong' })
         end
       else
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('errors',
+                                                    partial: 'shared/errors', locals: {
+                                                      resource: @evaluation
+                                                    }),
+                 status: :unprocessable_entity
+        end
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -44,7 +51,7 @@ class EvaluationsController < ApplicationController
                                                     partial: 'shared/sections/show',
                                                     locals: { model: @evaluation,
                                                               color: 'evaluationStrong',
-                                                              notice: 'Evaluation was successfully updated.'})
+                                                              notice: 'Evaluation was successfully updated.' })
         end
       else
         format.html { render :edit, status: :unprocessable_entity }

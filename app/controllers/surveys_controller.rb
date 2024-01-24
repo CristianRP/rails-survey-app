@@ -25,6 +25,13 @@ class SurveysController < ApplicationController
       if @survey.save
         format.turbo_stream
       else
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('errors',
+                                                    partial: 'shared/errors', locals: {
+                                                      resource: @survey
+                                                    }),
+                 status: :unprocessable_entity
+        end
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -70,9 +77,7 @@ class SurveysController < ApplicationController
     end
   end
 
-  def participants
-
-  end
+  def participants; end
 
 private
 

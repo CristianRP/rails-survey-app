@@ -25,15 +25,18 @@ class ChaptersController < ApplicationController
       if @chapter.save
         format.turbo_stream do
           render turbo_stream: turbo_stream.append('chapters_all',
-                                                    partial: 'shared/sections/list_item',
-                                                    locals: {
-                                                      model: @chapter,
-                                                      color: 'chapterStrong' })
+                                                   partial: 'shared/sections/list_item',
+                                                   locals: {
+                                                     model: @chapter,
+                                                     color: 'chapterStrong'
+                                                   })
         end
         format.json { render :show, status: :created, location: @chapter }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @chapter.errors, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('errors',
+                                                    partial: 'shared/errors', locals: { resource: @chapter }), status: :bad_request
+        end
       end
     end
   end

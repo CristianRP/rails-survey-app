@@ -20,6 +20,8 @@ class Question < ApplicationRecord
 private
 
   def send_partial_counter
+    return if self.evaluation.nil?
+
     broadcast_replace_to(evaluation, target: 'count', partial: 'questions/count', locals: { list: self.evaluation.questions })
   end
 end

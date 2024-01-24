@@ -1,5 +1,5 @@
 <%= render "shared/modal", title: "All Sections" do %>
-  <%= form_with( model: [@survey, SurveySection.new], data: { controller: "modal", action: "submit->modal#close" } ) do |form| %>
+  <%= form_with( model: [@survey, SurveySection.new], data: { controller: "modal", action: "turbo:submit-end->modal#close" } ) do |form| %>
     <div class="flex flex-col h-96 my-5 p-5 border-2 border-red-200 overflow-y-auto">
       <%= collection_check_boxes(:sections, :ids, Section.not_in_survey(@survey.id), :id, :name) do |tag| %>
         <div class="flex" >

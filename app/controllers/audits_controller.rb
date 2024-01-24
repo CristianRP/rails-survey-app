@@ -7,8 +7,10 @@ class AuditsController < ApplicationController
     @step = params[:step].to_i
     set_log
 
-    @log.update(status: :viewed) if @log.default?
-    @log.update(status: :process) unless @step.zero?
+    unless @log.finish?
+      @log.update(status: :viewed) if @log.default?
+      @log.update(status: :process) unless @step.zero?
+    end
 
     @total = @survey.sections.size
     @progress_state = @step.to_f.fdiv(@total.to_f) * 100
